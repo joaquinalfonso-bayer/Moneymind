@@ -303,7 +303,7 @@ h1, h2, h3 { font-weight: var(--heading-weight); letter-spacing: var(--heading-t
 }
 .trust-pill .avatar { width: 24px; height: 24px; border-color: #fff; }
 .hero__title {
-  font-size: clamp(48px, 7vw, 92px);
+  font-size: clamp(48px, 6vw, 86px);
   letter-spacing: -0.04em;
   line-height: 1.02;
   margin-bottom: 44px;
