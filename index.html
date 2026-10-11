@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moneymind</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Geist+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="is-loading">
+
+  <!-- ================= SPLASH SCREEN ================= -->
+  <div class="splash" id="splash" aria-hidden="true">
+    <div class="splash__rings">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="splash__center">
+      <div class="logo-tile logo-tile--xl splash__logo">
+        <svg xmlns="http://www.w3.org/2000/svg" class="m-glyph" viewBox="0 0 1420 1266" role="img" aria-label="M logo" style="width:120px;height:auto">
+  <path fill="#B6E656" d="M304.5 1264.9C207.3 1256.9 118.3 1206.2 61.0 1126.0C27.2 1078.7 6.4 1022.2 1.0 963.0C-0.4 947.1 -0.4 318.9 1.0 303.0C6.4 243.8 27.2 187.3 61.0 140.0C118.9 59.0 207.2 9.0 306.4 1.0C324.3 -0.4 1095.7 -0.4 1113.6 1.0C1212.8 9.0 1301.1 59.0 1359.0 140.0C1392.8 187.3 1413.6 243.8 1419.0 303.0C1420.4 318.9 1420.4 947.1 1419.0 963.0C1413.6 1022.2 1392.8 1078.7 1359.0 1126.0C1301.1 1207.0 1212.8 1257.0 1113.6 1265.0C1098.0 1266.2 319.8 1266.2 304.5 1264.9Z"/>
+  <path fill="#282828" d="M286.5 955.6C241.3 946.9 206.9 910.4 201.1 865.3C200.5 860.5 199.9 780.1 199.5 656.0L198.8 454.5L201.0 443.5C206.7 415.5 218.7 393.3 238.4 374.2C263.4 350.0 293.4 338.0 328.5 338.0C355.5 338.0 378.1 344.8 400.0 359.5C412.2 367.7 421.2 375.9 429.8 386.8C434.8 393.2 604.8 576.0 619.2 590.5C621.2 592.5 621.2 592.3 620.9 521.0C620.6 455.0 620.7 448.9 622.4 441.0C627.9 415.3 639.3 394.4 657.9 375.9C683.5 350.3 713.3 338.0 749.4 338.0C776.4 338.0 799.1 344.8 821.0 359.5C833.6 368.0 841.0 374.8 851.1 387.2C859.5 397.6 1137.1 701.9 1157.4 723.0C1177.3 743.7 1188.0 763.4 1193.7 790.0C1196.2 801.9 1196.2 828.1 1193.7 840.0C1185.3 879.3 1161.6 911.0 1126.8 929.5C1109.1 938.9 1093.4 943.0 1072.0 943.7C1036.1 945.0 1007.7 934.9 979.3 910.8C975.8 907.9 925.8 853.5 868.0 789.8C791.6 705.8 762.1 673.9 759.8 673.1C749.8 669.6 738.3 674.8 732.9 685.2C728.9 693.0 728.3 691.9 755.5 730.0C772.0 753.2 778.5 767.1 783.1 789.3C786.1 803.6 786.1 826.4 783.1 840.7C777.6 867.2 766.8 887.8 748.5 906.9C729.4 926.7 706.7 939.4 679.8 945.1C666.0 948.1 640.6 948.3 628.1 945.7C606.3 941.0 589.0 933.3 572.3 920.6C562.4 913.1 551.5 901.5 436.4 776.0C347.4 678.9 310.0 638.8 306.9 637.0C295.8 630.8 280.9 636.6 276.5 648.9C274.5 654.7 274.6 659.6 276.9 664.6C279.0 669.3 365.0 762.4 376.8 772.8C390.3 784.7 403.1 805.3 407.9 822.9C414.4 846.7 412.3 873.8 402.1 895.6C388.6 924.4 364.2 945.1 333.5 953.7C322.3 956.8 297.9 957.8 286.5 955.6Z"/>
+</svg>
+      </div>
+      <div class="splash__word" id="splashWord">Moneymind</div>
+      <div class="splash__meta">
+        <span class="splash__label">Loading your finances</span>
+        <span class="splash__count mono"><span id="splashCount">0</span>%</span>
+      </div>
+      <div class="splash__bar"><span id="splashBar"></span></div>
+    </div>
+    <div class="splash__panel splash__panel--top"></div>
+    <div class="splash__panel splash__panel--bottom"></div>
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#home" class="brand">
+<img src="/images/moneymind-white.png" class="navbar-logo" alt="">
+      </a>
+      <nav class="nav__links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#" class="btn btn--lime btn--sm magnetic">Sign Up</a>
+      </nav>
+      <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="home">
+      <!-- VIDEO SLOT: hero background video -->
+      <div class="hero__bg" aria-hidden="true">
+        <!-- Placeholder: visible until videos/hero-bg.mp4 exists. Delete this div once your video is in. -->
+        <div class="hero__video-ph">
+          <svg viewBox="0 0 24 24" class="ph__icon"><rect x="2" y="5" width="15" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m17 10 5-3v10l-5-3z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <span>Hero background video placeholder</span>
+          <small>videos/hero-bg.mp4 &middot; 1920 x 1080 &middot; muted loop</small>
+        </div>
+        <video class="hero__video" autoplay muted loop playsinline preload="auto">
+          <source src="videos/hero-bg.webm" type="video/webm" />
+          <source src="videos/hero-bg.mp4" type="video/mp4" />
+        </video>
+        <!-- Dark overlay keeps the headline readable. Adjust or remove in styles.css (.hero__overlay). -->
+        <div class="hero__overlay"></div>
+      </div>
+
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <div class="trust-pill hero-anim">
+            <div class="avatars">
+              <img class="avatar" src="images/avatar-1.png" alt="Moneymind user" /><img class="avatar" src="images/avatar-2.png" alt="Moneymind user" /><img class="avatar" src="images/avatar-3.png" alt="Moneymind user" />
+            </div>
+            <span>Trusted by 100K People</span>
+          </div>
+
+          <h1 class="hero__title">
+            <span class="line"><span class="word purple">Elevate</span> <span class="word">Your</span></span>
+            <span class="line"><span class="word">Financial</span> <span class="word">Game</span></span>
+          </h1>
+
+          <a href="#about" class="btn btn--white hero-anim magnetic">Learn More</a>
+
+          <div class="badges hero-anim">
+            <a href="#" class="store-badge magnetic">
+              <svg viewBox="0 0 24 24" class="store-badge__icon"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 4.9c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z"/></svg>
+              <span><small>Download on the</small><strong>App Store</strong></span>
+            </a>
+            <a href="#" class="store-badge magnetic">
+              <svg viewBox="0 0 24 24" class="store-badge__icon"><path fill="#34A853" d="M3.6 2.2 13.4 12l-9.8 9.8c-.4-.2-.6-.6-.6-1.1V3.3c0-.5.2-.9.6-1.1z"/><path fill="#FBBC04" d="m16.7 15.3-3.3-3.3 3.3-3.3 3.8 2.2c1 .6 1 1.6 0 2.2z"/><path fill="#EA4335" d="M16.7 15.3 13.4 12l-9.8 9.8c.4.2.9.2 1.4-.1z"/><path fill="#4285F4" d="M16.7 8.7 5 2.3c-.5-.3-1-.3-1.4-.1l9.8 9.8z"/></svg>
+              <span><small>GET IT ON</small><strong>Google Play</strong></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__visual" id="heroVisual">
+          <div class="phone phone--hero" id="heroPhone">
+            <div class="phone__notch"></div>
+            <!-- IMAGE SLOT: replace images/hero-phone-screen.png -->
+             <video class="screen-img" src="videos/phone-screen.webm" alt="Moneymind app dashboard showing current balance and monthly summary" autoplay muted loop playsinline preload="auto"></video>
+            <div class="phone__shine"></div>
+          </div>
+          <div class="phone-shadow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SOCIAL PROOF ================= -->
+    <section class="proof">
+      <div class="container proof__inner">
+        <div class="avatars avatars--lg reveal-up">
+          <img class="avatar" src="images/avatar-1.png" alt="Moneymind user" /><img class="avatar" src="images/avatar-2.png" alt="Moneymind user" /><img class="avatar" src="images/avatar-3.png" alt="Moneymind user" />
+        </div>
+        <h2 class="proof__title split-words"><span class="purple">Trusted</span> by users across the platform</h2>
+        <div class="ratings">
+          <div class="rating reveal-up">
+            <span class="rating__num mono" data-count="4.9">0.0</span>
+            <div class="rating__meta">
+              <span class="rating__store">
+                <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 3.5v17l9-8.5zM4 3.5l12 6.8L13 12m-9 8.5 12-6.8L13 12m3-1.7 3.4 1.7L16 13.7"/></svg>
+                Google Play Store
+              </span>
+              <span class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+            </div>
+          </div>
+          <div class="rating reveal-up">
+            <span class="rating__num mono" data-count="4.9">0.0</span>
+            <div class="rating__meta">
+              <span class="rating__store">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="#fff"/><path d="M12 6 7.5 15M12 6l4.5 9M6 15h12M9.5 11.5h5" stroke="#000" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Apple Store
+              </span>
+              <span class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="about" id="about">
+      <svg class="about__rings" id="aboutRings" viewBox="-600 -600 1200 1200" preserveAspectRatio="xMidYMid slice">
+        <g fill="none" stroke="#9B5CF6" stroke-width="1.2">
+          <circle r="140" /><circle r="230" /><circle r="320" /><circle r="410" /><circle r="500" /><circle r="590" /><circle r="680" /><circle r="770" />
+        </g>
+      </svg>
+      <div class="container about__inner">
+        <span class="pill-tag">About</span>
+        <h2 class="about__title split-words">The <span class="purple">Only Financial App</span><br/>You’ll Need</h2>
+        <p class="about__text reveal-up">Lorem ipsum dolor sit amet consectetur. Aliquam nullam enim vitae nulla sagittis lectus mi. Enim urna ac quis eget egestas libero aenean.</p>
+        <a href="#features" class="btn btn--lime btn--glow magnetic reveal-up">Start Saving Today</a>
+      </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="features__head">
+          <span class="pill-tag">Features</span>
+          <h2 class="features__title split-words">Here’s what Moneymind Helps<br/>You Manage</h2>
+        </div>
+
+        <div class="bento">
+          <!-- Card: 3D icon -->
+          <article class="card card--icon tilt">
+            <div class="card__rings"><span></span><span></span><span></span></div>
+            <div class="icon3d" id="icon3d">
+             <svg xmlns="http://www.w3.org/2000/svg" class="m-glyph" viewBox="0 0 1420 1266" role="img" aria-label="M logo" style="width:120px;height:auto">
+  <path fill="#282828" d="M286.5 955.6C241.3 946.9 206.9 910.4 201.1 865.3C200.5 860.5 199.9 780.1 199.5 656.0L198.8 454.5L201.0 443.5C206.7 415.5 218.7 393.3 238.4 374.2C263.4 350.0 293.4 338.0 328.5 338.0C355.5 338.0 378.1 344.8 400.0 359.5C412.2 367.7 421.2 375.9 429.8 386.8C434.8 393.2 604.8 576.0 619.2 590.5C621.2 592.5 621.2 592.3 620.9 521.0C620.6 455.0 620.7 448.9 622.4 441.0C627.9 415.3 639.3 394.4 657.9 375.9C683.5 350.3 713.3 338.0 749.4 338.0C776.4 338.0 799.1 344.8 821.0 359.5C833.6 368.0 841.0 374.8 851.1 387.2C859.5 397.6 1137.1 701.9 1157.4 723.0C1177.3 743.7 1188.0 763.4 1193.7 790.0C1196.2 801.9 1196.2 828.1 1193.7 840.0C1185.3 879.3 1161.6 911.0 1126.8 929.5C1109.1 938.9 1093.4 943.0 1072.0 943.7C1036.1 945.0 1007.7 934.9 979.3 910.8C975.8 907.9 925.8 853.5 868.0 789.8C791.6 705.8 762.1 673.9 759.8 673.1C749.8 669.6 738.3 674.8 732.9 685.2C728.9 693.0 728.3 691.9 755.5 730.0C772.0 753.2 778.5 767.1 783.1 789.3C786.1 803.6 786.1 826.4 783.1 840.7C777.6 867.2 766.8 887.8 748.5 906.9C729.4 926.7 706.7 939.4 679.8 945.1C666.0 948.1 640.6 948.3 628.1 945.7C606.3 941.0 589.0 933.3 572.3 920.6C562.4 913.1 551.5 901.5 436.4 776.0C347.4 678.9 310.0 638.8 306.9 637.0C295.8 630.8 280.9 636.6 276.5 648.9C274.5 654.7 274.6 659.6 276.9 664.6C279.0 669.3 365.0 762.4 376.8 772.8C390.3 784.7 403.1 805.3 407.9 822.9C414.4 846.7 412.3 873.8 402.1 895.6C388.6 924.4 364.2 945.1 333.5 953.7C322.3 956.8 297.9 957.8 286.5 955.6Z"/>
+</svg>
+            </div>
+            <div class="card__glare"></div>
+          </article>
+
+          <!-- Card: expense tracking -->
+          <article class="card card--wide tilt">
+            <div class="card__copy">
+              <h3 class="card__title"><span class="purple">Effortless</span><br/>Expense Tracking</h3>
+              <p>Lorem ipsum dolor sit amet consectetur. Aliquam nullam enim vitae nulla sagittis lectus mi.</p>
+            </div>
+            <div class="phone phone--crop phone--right">
+              <div class="phone__notch"></div>
+              <!-- IMAGE SLOT: replace images/feature-expense-screen.png -->
+              <img class="screen-img" src="images/feature-expense-screen.png" alt="Expense tracking chart screen" loading="lazy" />
+            </div>
+            <div class="card__glare"></div>
+          </article>
+
+          <!-- Card: monthly overview -->
+          <article class="card card--tall tilt">
+            <div class="card__media">
+              <div class="phone phone--crop phone--top">
+                <div class="phone__notch"></div>
+                <!-- IMAGE SLOT: replace images/feature-overview-screen.png -->
+              <img class="screen-img" src="images/feature-overview-screen.png" alt="Monthly overview donut chart screen" loading="lazy" />
+              </div>
+            </div>
+            <div class="card__copy">
+              <h3 class="card__title"><span class="purple">Insightful</span><br/>Monthly Overview</h3>
+              <p>Lorem ipsum dolor sit amet consectetur. Aliquam nullam enim vitae nulla sagittis lectus mi.</p>
+            </div>
+            <div class="card__glare"></div>
+          </article>
+
+          <!-- Card: budget alerts -->
+          <article class="card card--tall tilt">
+            <div class="card__media">
+              <div class="phone phone--crop phone--top">
+                <div class="phone__notch"></div>
+                <!-- IMAGE SLOT: replace images/feature-budget-screen.png -->
+              <img class="screen-img" src="images/feature-budget-screen.png" alt="Budget alert balance screen" loading="lazy" />
+              </div>
+              <div class="alert-pill" id="alertPill">
+                <span class="alert-pill__check">&#10003;</span>
+                30% Of Your Expenses, Looks Good.
+              </div>
+            </div>
+            <div class="card__copy">
+              <h3 class="card__title"><span class="purple">Smart</span><br/>Budget Alerts</h3>
+              <p>Lorem ipsum dolor sit amet consectetur. Aliquam nullam enim vitae nulla sagittis lectus mi.</p>
+            </div>
+            <div class="card__glare"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS ================= -->
+    <section class="testimonials">
+      <div class="container">
+        <div class="testimonials__head">
+          <div>
+            <span class="pill-tag">Testimonials</span>
+            <h2 class="testimonials__title split-words"><span class="purple">See</span> What the<br/>Talk is All About</h2>
+          </div>
+          <div class="arrows">
+            <button class="arrow magnetic" id="prevBtn" aria-label="Previous">
+              <svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="arrow magnetic" id="nextBtn" aria-label="Next">
+              <svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="carousel">
+          <div class="carousel__track" id="track"><!-- cards injected by JS --></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta__banner" id="ctaBanner">
+          <svg class="cta__bigm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420 1266" role="img" aria-hidden="true" aria-label="M logo">
+  <path fill="#282828" d="M286.5 955.6C241.3 946.9 206.9 910.4 201.1 865.3C200.5 860.5 199.9 780.1 199.5 656.0L198.8 454.5L201.0 443.5C206.7 415.5 218.7 393.3 238.4 374.2C263.4 350.0 293.4 338.0 328.5 338.0C355.5 338.0 378.1 344.8 400.0 359.5C412.2 367.7 421.2 375.9 429.8 386.8C434.8 393.2 604.8 576.0 619.2 590.5C621.2 592.5 621.2 592.3 620.9 521.0C620.6 455.0 620.7 448.9 622.4 441.0C627.9 415.3 639.3 394.4 657.9 375.9C683.5 350.3 713.3 338.0 749.4 338.0C776.4 338.0 799.1 344.8 821.0 359.5C833.6 368.0 841.0 374.8 851.1 387.2C859.5 397.6 1137.1 701.9 1157.4 723.0C1177.3 743.7 1188.0 763.4 1193.7 790.0C1196.2 801.9 1196.2 828.1 1193.7 840.0C1185.3 879.3 1161.6 911.0 1126.8 929.5C1109.1 938.9 1093.4 943.0 1072.0 943.7C1036.1 945.0 1007.7 934.9 979.3 910.8C975.8 907.9 925.8 853.5 868.0 789.8C791.6 705.8 762.1 673.9 759.8 673.1C749.8 669.6 738.3 674.8 732.9 685.2C728.9 693.0 728.3 691.9 755.5 730.0C772.0 753.2 778.5 767.1 783.1 789.3C786.1 803.6 786.1 826.4 783.1 840.7C777.6 867.2 766.8 887.8 748.5 906.9C729.4 926.7 706.7 939.4 679.8 945.1C666.0 948.1 640.6 948.3 628.1 945.7C606.3 941.0 589.0 933.3 572.3 920.6C562.4 913.1 551.5 901.5 436.4 776.0C347.4 678.9 310.0 638.8 306.9 637.0C295.8 630.8 280.9 636.6 276.5 648.9C274.5 654.7 274.6 659.6 276.9 664.6C279.0 669.3 365.0 762.4 376.8 772.8C390.3 784.7 403.1 805.3 407.9 822.9C414.4 846.7 412.3 873.8 402.1 895.6C388.6 924.4 364.2 945.1 333.5 953.7C322.3 956.8 297.9 957.8 286.5 955.6Z"/>
+</svg>
+          
+          <div class="cta__copy">
+            <h2 class="cta__title split-words">Start Saving<br/>Today</h2>
+            <div class="badges reveal-up">
+              <a href="#" class="store-badge store-badge--light magnetic">
+                <svg viewBox="0 0 24 24" class="store-badge__icon"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 4.9c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z"/></svg>
+                <span><small>Download on the</small><strong>App Store</strong></span>
+              </a>
+              <a href="#" class="store-badge store-badge--light magnetic">
+                <svg viewBox="0 0 24 24" class="store-badge__icon"><path fill="#34A853" d="M3.6 2.2 13.4 12l-9.8 9.8c-.4-.2-.6-.6-.6-1.1V3.3c0-.5.2-.9.6-1.1z"/><path fill="#FBBC04" d="m16.7 15.3-3.3-3.3 3.3-3.3 3.8 2.2c1 .6 1 1.6 0 2.2z"/><path fill="#EA4335" d="M16.7 15.3 13.4 12l-9.8 9.8c.4.2.9.2 1.4-.1z"/><path fill="#4285F4" d="M16.7 8.7 5 2.3c-.5-.3-1-.3-1.4-.1l9.8 9.8z"/></svg>
+                <span><small>GET IT ON</small><strong>Google Play</strong></span>
+              </a>
+            </div>
+          </div>
+          <div class="cta__visual">
+            <div class="phone phone--cta" id="ctaPhone">
+              <div class="phone__notch"></div>
+              <!-- IMAGE SLOT: replace images/cta-phone-screen.png -->
+              <img class="screen-img" src="images/cta-phone-screen.png" alt="Moneymind current balance screen" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <a href="#home" class="brand brand--dark">
+     <img src="/images/moneymind-black.png" class="footer-logo" alt="">
+        </a>
+        <div class="footer__cols">
+          <div class="footer__col"><h4>Get Started</h4><a href="#">Lorem Ipsum</a><a href="#">Lorem Ipsum</a></div>
+          <div class="footer__col"><h4>About</h4><a href="#">Lorem Ipsum</a><a href="#">Lorem Ipsum</a><a href="#">Lorem Ipsum</a></div>
+          <div class="footer__col"><h4>Features</h4><a href="#">Lorem Ipsum</a><a href="#">Lorem Ipsum</a><a href="#">Lorem Ipsum</a><a href="#">Lorem Ipsum</a></div>
+          <div class="footer__col"><h4>Community</h4><a href="#">Lorem Ipsum</a><a href="#">Lorem Ipsum</a></div>
+        </div>
+      </div>
+
+      <div class="footer__mid">
+        <div class="follow">
+          <span>Follow us</span>
+          <div class="socials">
+            <a href="#" aria-label="Facebook" class="magnetic"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3"/><path fill="#D4FF5A" d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.2-1.4 1.4-1.4h1.5V5.5c-.3 0-1.1-.1-2.1-.1-2.1 0-3.6 1.3-3.6 3.7v2.1H8.3V14h2.4v7z"/></svg></a>
+            <a href="#" aria-label="Instagram" class="magnetic"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="5"/><rect x="5.5" y="5.5" width="13" height="13" rx="4" fill="none" stroke="#D4FF5A" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="none" stroke="#D4FF5A" stroke-width="1.8"/><circle cx="16.3" cy="7.7" r="1" fill="#D4FF5A"/></svg></a>
+            <a href="#" aria-label="YouTube" class="magnetic"><svg viewBox="0 0 24 24"><rect y="4" width="24" height="16" rx="5"/><path fill="#D4FF5A" d="m10 8.5 5.5 3.5-5.5 3.5z"/></svg></a>
+          </div>
+        </div>
+        <div class="badges badges--sm">
+          <a href="#" class="store-badge magnetic">
+            <svg viewBox="0 0 24 24" class="store-badge__icon"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 4.9c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z"/></svg>
+            <span><small>Download on the</small><strong>App Store</strong></span>
+          </a>
+          <a href="#" class="store-badge magnetic">
+            <svg viewBox="0 0 24 24" class="store-badge__icon"><path fill="#34A853" d="M3.6 2.2 13.4 12l-9.8 9.8c-.4-.2-.6-.6-.6-1.1V3.3c0-.5.2-.9.6-1.1z"/><path fill="#FBBC04" d="m16.7 15.3-3.3-3.3 3.3-3.3 3.8 2.2c1 .6 1 1.6 0 2.2z"/><path fill="#EA4335" d="M16.7 15.3 13.4 12l-9.8 9.8c.4.2.9.2 1.4-.1z"/><path fill="#4285F4" d="M16.7 8.7 5 2.3c-.5-.3-1-.3-1.4-.1l9.8 9.8z"/></svg>
+            <span><small>GET IT ON</small><strong>Google Play</strong></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>2025 Moneymind. All rights reserved.</span>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer__giant" id="footerGiant" aria-hidden="true">Moneymind</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
